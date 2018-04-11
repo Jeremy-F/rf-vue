@@ -1,0 +1,23 @@
+<div :class="'col-'+size" style="margin-top: 10px; margin-bottom: 10px">
+    <div class="card">
+        <div class="card-header bg-success">
+            <span class="float-left">{{ graphiqueModel.name }}</span>
+            <span class="float-right">
+                <button class="btn btn-outline-warning btn-circle" v-on:click="moreSize()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                <button class="btn btn-outline-warning btn-circle" v-on:click="minusSize()"><i class="fa fa-minus" aria-hidden="true"></i></button>
+            </span>
+        </div>
+        <div class="card-body">
+
+            <div class="form-group">
+                <label for="antenna">Antenne / Lieu</label>
+                <select class="form-control selectpicker" id="antenna" v-bind="antenna" :disabled="state !== State.init">
+                    <option value="0">Discon Toit Esiee</option>
+                    <option value="0">Discon toit Omic</option>
+                    <option value="0">Hyperlog bibliotheque esiee</option>
+                </select>
+            </div>
+            <button type="button" class="btn success" v-on:click="next()"> <i class="fa fa-arrow-right-left" aria-hidden="true"></i> Suivant </button>
+        </div>
+    </div>
+</div>
