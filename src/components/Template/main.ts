@@ -15,6 +15,8 @@ import GM from "../../Model/Graphique";
         };
     },
     mounted () {
+        let d = this.$store.dispatch("data/loadData");
+        console.log("D", d);
         this.graphiqueModels = [];
     },
     components:{

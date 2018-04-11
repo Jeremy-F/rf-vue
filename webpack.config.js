@@ -27,13 +27,14 @@ if(!dev){
 let config = {
         entry: './src/main.ts',
         output:{
-            path: path.resolve(__dirname, 'dist/js/'),
+            path: path.resolve(__dirname, ''),
             publicPath: '/dist/js/',
             //filename: dev?"main.js":"main.[hash:12].js"
             filename: dev?"main.js":"main.js"
         },
         resolve: {
             extensions: ['.js', '.ts', '.vue', '.html', '.sass', '.css'],
+            alias:{'jquery': 'jquery/src/jquery.js'}
         },
         devtool: dev?"source-map":false,
         devServer: {
