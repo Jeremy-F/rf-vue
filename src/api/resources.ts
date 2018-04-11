@@ -3,7 +3,7 @@ import * as VueResource from 'vue-resource';
 import {HttpResponse} from "vue-resource";
 import Chart from "../Model/Chart";
 
-VueResource["Http"].options.root = API_ROOT;
+VueResource["Http"].options.root = "/api/";
 /*
 VueResource["Http"].interceptors.push((request, next) => {
     next();
