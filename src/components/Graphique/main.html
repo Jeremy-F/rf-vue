@@ -27,7 +27,7 @@
             <div class="form-group" v-if="state > State.band && currentBand !== null">
                 <label for="chart">Graphique</label>
                 <select class="form-control selectpicker" id="chart" v-model="chart">
-                    <option v-for="currentChart in currentBand.charts" :value="currentChart">{{chart.type}}</option>
+                    <option v-for="currentChart in currentBand.charts" :value="currentChart">{{currentChart.type}}</option>
                 </select>
                 {{chart}}
             </div>
