@@ -27,7 +27,7 @@ if(!dev){
 let config = {
         entry: './src/main.ts',
         output:{
-            path: path.resolve(__dirname, ''),
+            path: path.resolve(__dirname, 'dist/js/'),
             publicPath: '/dist/js/',
             //filename: dev?"main.js":"main.[hash:12].js"
             filename: dev?"main.js":"main.js"
