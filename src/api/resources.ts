@@ -11,6 +11,5 @@ VueResource["Http"].interceptors.push((request, next) => {
 */
 export const GetDataJson = () : Promise<HttpResponse> => VueResource["Resource"]("data.json").get();
 export const GetChartsJson = (chart: Chart) : Promise<HttpResponse> => {
-    console.log("Chart : ", chart);
     return VueResource["Resource"]("results{/fileName}").get(chart);
 };

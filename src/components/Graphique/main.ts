@@ -1,5 +1,8 @@
+import Plotly from 'plotly.js'
 import {Vue, Component, Prop } from 'vue-property-decorator';
-import Render from './main.html';
+
+import Raphael from 'raphael/raphael'
+global["Raphael"] = Raphael;
 
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -10,9 +13,8 @@ import BandModel from "../../Model/Band";
 import { LineChart } from 'vue-morris'
 import {GetChartsJson} from "../../api/resources";
 import Chart from "../../Model/Chart";
+import Render from './main.html';
 
-import Raphael from 'raphael/raphael'
-global["Raphael"] = Raphael;
 
 class State{
     public static init = 0;
@@ -70,6 +72,7 @@ export default class Graphique extends Vue{
             return false;
         }
         this.size++;
+        this.onResize();
         return true;
     }
     public minusSize() : boolean{
@@ -77,7 +80,11 @@ export default class Graphique extends Vue{
             return false;
         }
         this.size--;
+        this.onResize();
         return true;
+    }
+    public onResize(){
+        Plotly.Plots.resize(this.$refs.antoine);
     }
     public before(){
         if(this.state > 0){
@@ -88,13 +95,22 @@ export default class Graphique extends Vue{
         if(this.state === State.graphique){
             this.state++;
             GetChartsJson(this.chart).then((result) => {
-                this.chart["datas"] = result["body"];
-                this.chart["datas"].data.forEach((currentData, index) =>{
-                    currentData.frequency = " "+(currentData.frequency)+" MHz";
-                    this.chart["datas"].data.splice(index, 1);
-                    this.chart["datas"].data.push(currentData);
+                let body = result["body"];
+                let x = [];
+                let y = [];
+                body.data.forEach(({frequency, absolutePower}, index) => {
+                    if(absolutePower > -150){
+                        x.push(frequency)
+                        y.push(absolutePower)
+                    }
                 });
                 this.state++;
+                Plotly.plot(
+                    this.$refs.antoine,
+                    [{x,y}],
+                    {autosize: true}
+                );
+                this.chart["datas"] = JSON.parse(JSON.stringify(body));
             });
             return;
         }else if(this.state === State.loadindGraphique){

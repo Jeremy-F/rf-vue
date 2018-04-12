@@ -73,6 +73,10 @@ let config = {
             ]
         },
         {
+            test: /\.js$/,
+            loader: 'ify-loader'
+        },
+        {
             test: /\.html$/,
             use: 'vue-template-loader'
         },

@@ -14,8 +14,7 @@
           "frequencyUnit":2,
           "rbwUnit":3,
           "bandDivider":1,
-          "charts":[
-          ]
+          "charts":[]
         },
         {
           "name":"RadioAmateur_AntenneTAlves_400",

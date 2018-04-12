@@ -35,15 +35,7 @@
         <div class="card-body" v-else-if="state === State.loadindGraphique">
             Telechargement du graphique en cours...
         </div>
-        <div class="card-body" v-else>
-            {{ chart.datas.xkey }}
-            {{ chart.datas.ykey }}
-            <line-chart
-                    id="line" :xkey="chart.datas.xkey" resize="true"
-                    :data="chart.datas.data"
-                    :ykeys="chart.datas.ykey"
-                    :line-colors="lineColor">
-            </line-chart>
+        <div :class="{'graphique':state >= State.loadindGraphique}" class="card-body w-100 h-100" ref="antoine">
 
         </div>
         <div class="card-footer">
@@ -51,8 +43,8 @@
                     <button v-if="state !== State.antenna"type="button" class="btn success" v-on:click="before()"> <i class="fa fa-arrow-left" aria-hidden="true"></i> Retour </button>
                 </span>
             <span class="float-right">
-                    <button type="button" class="btn success" v-on:click="next()"> <i class="fa fa-arrow-right" aria-hidden="true"></i> Suivant </button>
-                </span>
+                <button type="button" class="btn success" v-on:click="next()"> <i class="fa fa-arrow-right" aria-hidden="true"></i> Suivant </button>
+            </span>
         </div>
     </div>
 </div>
